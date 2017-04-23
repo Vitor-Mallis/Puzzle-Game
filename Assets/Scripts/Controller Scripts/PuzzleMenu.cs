@@ -5,9 +5,9 @@ using UnityEngine;
 public class PuzzleMenu : MonoBehaviour {
 
 	[SerializeField]
-	GameObject puzzlePanel;
+	GameObject puzzlePanel, levelSelect;
 	[SerializeField]
-	Animator puzzleAnimator;
+	Animator puzzleAnimator, levelSelectAnimator;
 
 	string selectedPuzzle;
 
@@ -15,5 +15,27 @@ public class PuzzleMenu : MonoBehaviour {
 		selectedPuzzle = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
 
 		Debug.Log (selectedPuzzle);
+
+		StartCoroutine (SelectPuzzleRoutine ());
+	}
+
+	public void Back() {
+		StartCoroutine (BackRoutine());
+	}
+
+	IEnumerator SelectPuzzleRoutine() {
+		puzzleAnimator.Play ("SlideOut");
+		yield return new WaitForSeconds (.5f);
+		puzzlePanel.SetActive (false);
+		levelSelect.SetActive (true);
+		levelSelectAnimator.Play ("SlideIn");
+	}
+
+	IEnumerator BackRoutine() {
+		levelSelectAnimator.Play ("SlideOut");
+		yield return new WaitForSeconds (.5f);
+		levelSelect.SetActive (false);
+		puzzlePanel.SetActive (true);
+		puzzleAnimator.Play ("SlideIn");
 	}
 }
