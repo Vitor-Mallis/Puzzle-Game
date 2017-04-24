@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class PuzzleMenu : MonoBehaviour {
 
+	public static PuzzleMenu instance;
+
 	[SerializeField]
 	GameObject puzzlePanel, levelSelect;
 	[SerializeField]
 	Animator puzzleAnimator, levelSelectAnimator;
 
 	string selectedPuzzle;
+	int selectedLevel;
+
+	void Awake() {
+		if (instance == null)
+			instance = this;
+	}
 
 	public void SelectPuzzle() {
 		selectedPuzzle = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
-
-		Debug.Log (selectedPuzzle);
 
 		StartCoroutine (SelectPuzzleRoutine ());
 	}
 
 	public void Back() {
 		StartCoroutine (BackRoutine());
+	}
+
+	public void ChooseLevel() {
+		selectedLevel = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+
+		SelectLevel.instance.LoadPuzzle (selectedLevel, selectedPuzzle);
 	}
 
 	IEnumerator SelectPuzzleRoutine() {
