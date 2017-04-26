@@ -22,9 +22,9 @@ public class SelectLevel : MonoBehaviour {
 	}
 
 	public void LoadPuzzle(int level, string puzzle) {
+		LayoutCards.instance.LayoutTheCards (level, puzzle);
+
 		StartCoroutine (LoadLevelRoutine ());
-
-
 	}
 		
 	public void Back() {

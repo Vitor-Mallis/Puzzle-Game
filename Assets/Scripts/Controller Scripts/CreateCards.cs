@@ -62,6 +62,12 @@ public class CreateCards : MonoBehaviour {
 			obj.gameObject.SetActive (false);
 			puzzle5Cards.Add (obj);
 		}
+
+		LayoutCards.instance.puzzle1Cards = puzzle1Cards;
+		LayoutCards.instance.puzzle2Cards = puzzle2Cards;
+		LayoutCards.instance.puzzle3Cards = puzzle3Cards;
+		LayoutCards.instance.puzzle4Cards = puzzle4Cards;
+		LayoutCards.instance.puzzle5Cards = puzzle5Cards;
 	}
 
 	void GetAnimators() {
@@ -84,5 +90,11 @@ public class CreateCards : MonoBehaviour {
 		for (int i = 0; i < puzzle5; i++) {
 			puzzle5Anim.Add (puzzle5Cards [i].GetComponent<Animator> ());
 		}
+
+		LayoutCards.instance.puzzle1Anim = puzzle1Anim;
+		LayoutCards.instance.puzzle2Anim = puzzle2Anim;
+		LayoutCards.instance.puzzle3Anim = puzzle3Anim;
+		LayoutCards.instance.puzzle4Anim = puzzle4Anim;
+		LayoutCards.instance.puzzle5Anim = puzzle5Anim;
 	}
 }
